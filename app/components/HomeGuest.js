@@ -7,20 +7,18 @@ function HomeGuest() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  //Submitting the Form
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await Axios.post("http://localhost:8080/register", { username, email, password });
-      console.log("User succefully created");
+      await Axios.post("/register", { username, email, password });
+      console.log("User was successfully created.");
     } catch (e) {
-      console.log(e.response.data);
+      console.log("There was an error.");
     }
   }
 
-  //HTML
   return (
-    <Page title="I Guess" wide={true}>
+    <Page title="Welcome!" wide={true}>
       <div className="row align-items-center">
         <div className="col-lg-7 py-3 py-md-5">
           <h1 className="display-3">Remember Writing?</h1>
