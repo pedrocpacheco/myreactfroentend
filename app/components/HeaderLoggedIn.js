@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react"
+import { Link } from "react-router-dom"
 
 function HeaderLoggedIn(props) {
   function handleLogout() {
-    props.setLoggedIn(false);
-    localStorage.removeItem("complexappToken");
-    localStorage.removeItem("complexappUsername");
-    localStorage.removeItem("complexappAvatar");
+    props.setLoggedIn(false)
+    localStorage.removeItem("complexappToken")
+    localStorage.removeItem("complexappUsername")
+    localStorage.removeItem("complexappAvatar")
   }
 
   return (
@@ -28,7 +28,7 @@ function HeaderLoggedIn(props) {
         Sign Out
       </button>
     </div>
-  );
+  )
 }
 
-export default HeaderLoggedIn;
+export default HeaderLoggedIn

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import Page from "./Page";
+import React, { useEffect } from "react"
+import Page from "./Page"
 
 function ViewSinglePost() {
   return (
@@ -30,7 +30,7 @@ function ViewSinglePost() {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quod asperiores corrupti omnis qui, placeat neque modi, dignissimos, ab exercitationem eligendi culpa explicabo nulla tempora rem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ea at esse, tempore qui possimus soluta impedit natus voluptate, sapiente saepe modi est pariatur. Aut voluptatibus aspernatur fugiat asperiores at.</p>
       </div>
     </Page>
-  );
+  )
 }
 
-export default ViewSinglePost;
+export default ViewSinglePost

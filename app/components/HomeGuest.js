@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import Page from "./Page";
-import Axios from "axios";
+import React, { useState } from "react"
+import Page from "./Page"
+import Axios from "axios"
 
 function HomeGuest() {
-  const [username, setUsername] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
 
   async function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      await Axios.post("/register", { username, email, password });
-      console.log("User was successfully created.");
+      await Axios.post("/register", { username, email, password })
+      console.log("User was successfully created.")
     } catch (e) {
-      console.log("There was an error.");
+      console.log("There was an error.")
     }
   }
 
@@ -51,7 +51,7 @@ function HomeGuest() {
         </div>
       </div>
     </Page>
-  );
+  )
 }
 
-export default HomeGuest;
+export default HomeGuest

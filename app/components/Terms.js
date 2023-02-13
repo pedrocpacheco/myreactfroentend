@@ -1,5 +1,5 @@
-import React from "react";
-import Page from "./Page";
+import React from "react"
+import Page from "./Page"
 
 function Terms() {
   return (
@@ -11,7 +11,7 @@ function Terms() {
       <h3>Details</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae laboriosam distinctio atque sint earum? Temporibus, voluptas aspernatur aliquam nisi sed harum laborum, nemo odio animi officia quisquam. Veniam, natus reprehenderit.</p>
     </Page>
-  );
+  )
 }
 
-export default Terms;
+export default Terms
