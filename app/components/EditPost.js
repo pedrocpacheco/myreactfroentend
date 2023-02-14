@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useImmer, useImmerReducer } from "use-immer"
+import { useImmerReducer } from "use-immer"
 import Page from "./Page"
 import { useParams, Link } from "react-router-dom"
 import Axios from "axios"
@@ -9,12 +9,12 @@ function ViewSinglePost() {
   const originalState = {
     title: {
       value: "",
-      hasErros: false,
+      hasErrors: false,
       message: ""
     },
     body: {
       value: "",
-      hasErros: false,
+      hasErrors: false,
       message: ""
     },
     isFetching: true,
@@ -37,7 +37,6 @@ function ViewSinglePost() {
 
   useEffect(() => {
     const ourRequest = Axios.CancelToken.source()
-
     async function fetchPost() {
       try {
         const response = await Axios.get(`/post/${state.id}`, { cancelToken: ourRequest.token })
@@ -73,7 +72,7 @@ function ViewSinglePost() {
           <label htmlFor="post-body" className="text-muted mb-1 d-block">
             <small>Body Content</small>
           </label>
-          <textarea name="body" id="post-body" className="body-content tall-textarea form-control" type={state.body.value} value={post.body} />
+          <textarea name="body" id="post-body" className="body-content tall-textarea form-control" type="text" value={state.body.value} />
         </div>
 
         <button className="btn btn-primary">Save Updates</button>
