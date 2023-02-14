@@ -43,9 +43,9 @@ function ViewSinglePost() {
       <div className="d-flex justify-content-between">
         <h2>{post.title}</h2>
         <span className="pt-2">
-          <a href="#" className="text-primary mr-2" title="Edit">
+          <Link to={`/post/${post._id}/edit`} className="text-primary mr-2" title="Edit">
             <i className="fas fa-edit"></i>
-          </a>
+          </Link>
           <a className="delete-post-button text-danger" title="Delete">
             <i className="fas fa-trash"></i>
           </a>
