@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom"
 import Axios from "axios"
 import LoadingDotsIcon from "./LoadingDotsIcon"
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
+import NotFound from "./NotFound"
 
 function ViewSinglePost() {
   const { id } = useParams()
@@ -27,6 +28,19 @@ function ViewSinglePost() {
       ourRequest.cancel()
     }
   }, [])
+
+  if (!isLoading && !post) {
+    return (
+      <Page title="Not Found">
+        <div className="text-center">
+          <h2>Whoops, nós não encontramos essa página.</h2>
+          <p className="lead text-muted">
+            Você sempre pode visitar a <Link to="/">homepage</Link> e começar de novo!
+          </p>
+        </div>
+      </Page>
+    )
+  }
 
   if (isLoading)
     return (
