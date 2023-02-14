@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import Page from "./Page"
 import { useParams, Link } from "react-router-dom"
 import Axios from "axios"
-import LoadingDotsIcon from "./LoadingDotsIcosn"
+import LoadingDotsIcon from "./LoadingDotsIcon"
 
 function ViewSinglePost() {
   const { id } = useParams()
@@ -10,15 +10,15 @@ function ViewSinglePost() {
   const [post, setPost] = useState()
 
   useEffect(() => {
-    const ourRequest = Axios.CancelToken.source(`/post/${id}`, { cancelToken: ourRequest.token })
+    const ourRequest = Axios.CancelToken.source()
 
     async function fetchPost() {
       try {
-        const response = await Axios.get(`/post/${id}`)
+        const response = await Axios.get(`/post/${id}`, { cancelToken: ourRequest.token })
         setPost(response.data)
         setIsLoading(false)
       } catch (e) {
-        console.log("There was a problem or the request was cancell")
+        console.log("There was a problem or the request was cancelled.")
       }
     }
     fetchPost()
