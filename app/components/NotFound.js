@@ -6,9 +6,9 @@ function NotFound() {
   return (
     <Page title="Not Found">
       <div className="text-center">
-        <h2>Whoops, nós não encontramos essa página.</h2>
+        <h2>Whoops, we cannot find that page.</h2>
         <p className="lead text-muted">
-          Você sempre pode visitar a <Link to="/">homepage</Link> e começar de novo!
+          You can always visit the <Link to="/">homepage</Link> to get a fresh start.
         </p>
       </div>
     </Page>

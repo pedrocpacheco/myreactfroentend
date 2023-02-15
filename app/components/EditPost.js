@@ -8,7 +8,7 @@ import StateContext from "../StateContext"
 import DispatchContext from "../DispatchContext"
 import NotFound from "./NotFound"
 
-function EditPost() {
+function EditPost(props) {
   const navigate = useNavigate()
   const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
@@ -60,13 +60,13 @@ function EditPost() {
       case "titleRules":
         if (!action.value.trim()) {
           draft.title.hasErrors = true
-          draft.title.message = "You must provide a title"
+          draft.title.message = "You must provide a title."
         }
         return
       case "bodyRules":
         if (!action.value.trim()) {
           draft.body.hasErrors = true
-          draft.body.message = "You must provide a body"
+          draft.body.message = "You must provide body content."
         }
         return
       case "notFound":
@@ -92,7 +92,8 @@ function EditPost() {
         if (response.data) {
           dispatch({ type: "fetchComplete", value: response.data })
           if (appState.user.username != response.data.author.username) {
-            appDispatch({ type: "flashMessage", value: "Você não tem permissão para editar este post" })
+            appDispatch({ type: "flashMessage", value: "You do not have permission to edit that post." })
+            // redirect to homepage
             navigate("/")
           }
         } else {
@@ -142,7 +143,7 @@ function EditPost() {
   return (
     <Page title="Edit Post">
       <Link className="small font-weight-bold" to={`/post/${state.id}`}>
-        &laquo; Back to post{" "}
+        &laquo; Back to post permalink
       </Link>
 
       <form className="mt-3" onSubmit={submitHandler}>
