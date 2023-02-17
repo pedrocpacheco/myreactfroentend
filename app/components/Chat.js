@@ -26,7 +26,7 @@ function Chat() {
         draft.chatMessages.push(message)
       })
     })
-  })
+  }, [])
 
   function handleFieldChange(e) {
     const value = e.target.value
@@ -37,12 +37,12 @@ function Chat() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    //Mandr mensagens
+    // Send message to chat server
     socket.emit("chatFromBrowser", { message: state.fieldValue, token: appState.user.token })
 
-    setState(() => {
-      //Adicionar mensagens
-      draft.chatMessages.push({ message: draft.fieldValue, username: appDispatch.user.username, avatar: appState.user.avatar })
+    setState(draft => {
+      // Add message to state collection of messages
+      draft.chatMessages.push({ message: draft.fieldValue, username: appState.user.username, avatar: appState.user.avatar })
       draft.fieldValue = ""
     })
   }
@@ -67,17 +67,18 @@ function Chat() {
               </div>
             )
           }
+
           return (
-            <div key="{index}" className="chat-other">
+            <div className="chat-other">
               <a href="#">
-                <img className="avatar-tiny" src="https://gravatar.com/avatar/b9216295c1e3931655bae6574ac0e4c2?s=128" />
+                <img className="avatar-tiny" src={message.avatar} />
               </a>
               <div className="chat-message">
                 <div className="chat-message-inner">
                   <a href="#">
-                    <strong>barksalot:</strong>
+                    <strong>{message.username}:</strong>
                   </a>
-                  Hey, I am good, how about you?
+                  {message.message}
                 </div>
               </div>
             </div>
