@@ -21,7 +21,7 @@
     "react-dom": "^18.0.0",
     "react-markdown": "^8.0.5",
     "react-router-dom": "^6.3.0",
-    "react-tooltip": "^5.7.5",
+    "react-tooltip": "^5.8.1",
     "react-transition-group": "^4.4.5",
     "use-immer": "^0.8.1",
     "webpack": "^5.72.0",

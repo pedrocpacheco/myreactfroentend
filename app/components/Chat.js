@@ -1,11 +1,23 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useContext, useRef } from "react"
+import StateContext from "../StateContext"
+import DispatchContext from "../DispatchContext"
 
 function Chat() {
+  const chatField = useRef(null)
+  const appState = useContext(StateContext)
+  const appDispatch = useContext(DispatchContext)
+
+  useEffect(() => {
+    if (appState.isChatOpen) {
+      chatField.current.focus()
+    }
+  }, [appState.isChatOpen])
+
   return (
-    <div id="chat-wrapper" className="chat-wrapper chat-wrapper--is-visible shadow border-top border-left border-right">
+    <div id="chat-wrapper" className={"chat-wrapper shadow border-top border-left border-right " + (appState.isChatOpen ? "chat-wrapper--is-visible" : "")}>
       <div className="chat-title-bar bg-primary">
         Chat
-        <span className="chat-title-bar-close">
+        <span onClick={() => appDispatch({ type: "closeChat" })} className="chat-title-bar-close">
           <i className="fas fa-times-circle"></i>
         </span>
       </div>
@@ -17,7 +29,7 @@ function Chat() {
           <img className="chat-avatar avatar-tiny" src="https://gravatar.com/avatar/b9408a09298632b5151200f3449434ef?s=128" />
         </div>
 
-        <div className="chat-other">
+        <div key="{index}" className="chat-other">
           <a href="#">
             <img className="avatar-tiny" src="https://gravatar.com/avatar/b9216295c1e3931655bae6574ac0e4c2?s=128" />
           </a>
@@ -32,7 +44,7 @@ function Chat() {
         </div>
       </div>
       <form id="chatForm" className="chat-form border-top">
-        <input type="text" className="chat-field" id="chatField" placeholder="Type a message…" autoComplete="off" />
+        <input ref={chatField} type="text" className="chat-field" id="chatField" placeholder="Type a message…" autoComplete="off" />
       </form>
     </div>
   )

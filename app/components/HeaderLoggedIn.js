@@ -9,7 +9,6 @@ function HeaderLoggedIn(props) {
 
   function handleLogout() {
     appDispatch({ type: "logout" })
-    navigate(`/`)
   }
 
   function handleSearchIcon(e) {
@@ -22,7 +21,7 @@ function HeaderLoggedIn(props) {
       <a data-for="search" data-tip="Search" onClick={handleSearchIcon} href="#" className="text-white mr-2 header-search-icon">
         <i className="fas fa-search"></i>
       </a>
-      <span data-for="chat" data-tip="Chat" className="mr-2 header-chat-icon text-white">
+      <span onClick={() => appDispatch({ type: "toggleChat" })} data-for="chat" data-tip="Chat" className="mr-2 header-chat-icon text-white">
         <i className="fas fa-comment"></i>
         <span className="chat-count-badge text-white"> </span>
       </span>
