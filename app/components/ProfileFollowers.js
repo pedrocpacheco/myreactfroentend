@@ -32,7 +32,7 @@ function ProfileFollowers(props) {
     <div className="list-group">
       {posts.map((follower, index) => {
         return (
-          <Link key={index} to={`/post/${follower.username}`} className="list-group-item list-group-item-action">
+          <Link key={index} to={`/profile/${follower.username}`} className="list-group-item list-group-item-action">
             <img className="avatar-tiny" src={follower.avatar} /> {follower.username}
           </Link>
         )
