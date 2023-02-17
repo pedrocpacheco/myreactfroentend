@@ -5,6 +5,7 @@ import Axios from "axios"
 import StateContext from "../StateContext"
 import ProfilePosts from "./ProfilePosts"
 import ProfileFollowers from "./ProfileFollowers"
+import ProfileFollowing from "./ProfileFollowing"
 import { useImmer } from "use-immer"
 
 function Profile() {
@@ -138,7 +139,7 @@ function Profile() {
       <Routes>
         <Route path="" element={<ProfilePosts />} />
         <Route path="followers" element={<ProfileFollowers />} />
-        <Route path="following" element={<ProfilePosts />} />
+        <Route path="following" element={<ProfileFollowing />} />
       </Routes>
     </Page>
   )
