@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Page from "./Page"
 import Axios from "axios"
 import { useImmer, useImmerReducer } from "use-immer"
@@ -45,14 +45,44 @@ function HomeGuest() {
         }
         return
       case "usernameAfterDelay":
+        if (draft.username.value.length < 3) {
+          draft.username.hasErrors = true
+          draft.username.message = "Username must be at least 3 characters"
+        }
+        if (!draft.has.errors) {
+          draft.username.checkCount++
+        }
+        return
+      case "usernameUniqueResults":
+        if (action.value) {
+          draft.username.hasErrors = true
+          draft.username.isUnique = false
+          draft.username.message = "That username is already being used"
+        } else {
+          draft.username.isUnique = true
+        }
         return
       case "emailImmediately":
         draft.email.hasErrors = false
         draft.email.value = action.value
         return
       case "emailAfterDelay":
+        if (/^\S+@\S+$/.test(draft.email.value)) {
+          draft.email.hasErrors = true
+          draft.email.message = "You must provide a valid email adress"
+        }
+        if (!draft.email.hasErrors) {
+          draft.email.checkCount++
+        }
         return
       case "emailUniqueRetults":
+        if (action.value) {
+          draft.email.hasErrors = true
+          draft.email.isUnique = false
+          draft.email.message = "That email is already being used."
+        } else {
+          draft.emai.isUnique = true
+        }
         return
       case "passwordImmediately":
         return
@@ -64,6 +94,59 @@ function HomeGuest() {
   }
 
   const [state, dispatch] = useImmerReducer(ourReducer, initialState)
+
+  useEffect(() => {
+    if (state.username.value) {
+      const delay = setTimeout(() => dispatch({ type: "usernameAfterDelay" }), 800)
+      return () => clearTimeout(delay)
+    }
+  }, [state.username.value])
+
+  useEffect(() => {
+    if (state.email.value) {
+      const delay = setTimeout(() => dispatch({ type: "emailAfterDelay" }), 800)
+      return () => clearTimeout(delay)
+    }
+  }, [state.email.value])
+
+  useEffect(() => {
+    if (state.password.value) {
+      const delay = setTimeout(() => dispatch({ type: "passwordAfterDelay" }), 800)
+      return () => clearTimeout(delay)
+    }
+  }, [state.password.value])
+
+  useEffect(() => {
+    if (state.username.checkCount) {
+      const ourRequest = Axios.CancelToken.source()
+      async function fetchResults() {
+        try {
+          const response = await Axios.post("/doesUsernameExist", { username: state.username.value }, { cancelToken: ourRequest.token })
+          dispatch({ type: "usernameUniqueResults", value: response.data })
+        } catch (e) {
+          console.log("There was a problem or the request was cancelled.")
+        }
+      }
+      fetchResults()
+      return () => ourRequest.cancel()
+    }
+  }, [state.username.checkCount])
+
+  useEffect(() => {
+    if (state.email.checkCount) {
+      const ourRequest = Axios.CancelToken.source()
+      async function fetchResults() {
+        try {
+          const response = await Axios.post("/doesEmailExist", { email: state.email.value }, { cancelToken: ourRequest.token })
+          dispatch({ type: "emailUniqueResults", value: response.data })
+        } catch (e) {
+          console.log("There was a problem or the request was cancelled.")
+        }
+      }
+      fetchResults()
+      return () => ourRequest.cancel()
+    }
+  }, [state.email.checkCount])
 
   function handleSubmit(e) {
     e.preventDefault()
