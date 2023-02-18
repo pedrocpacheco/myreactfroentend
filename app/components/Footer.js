@@ -18,11 +18,13 @@ function Footer() {
         </Link>
       </p>
       <p className="m-0">
-        Copyright &copy; 2020{" "}
+        2023{" "}
         <a href="/" className="text-muted">
-          ComplexApp
+          ReactApp{" "}
         </a>
-        . All rights reserved.
+        <a href="https://www.linkedin.com/in/pedro-carvalho-pacheco/" target="blank" className="text-muted">
+          Pedro Carvalho Pacheco
+        </a>
       </p>
     </footer>
   )
