@@ -10,7 +10,7 @@ function Footer() {
         </Link>{" "}
         |{" "}
         <Link className="mx-1" to="/about-us">
-          About Us
+          About Me
         </Link>{" "}
         |{" "}
         <Link className="mx-1" to="/terms">
@@ -19,8 +19,8 @@ function Footer() {
       </p>
       <p className="m-0">
         2023{" "}
-        <a href="/" className="text-muted">
-          ReactApp{" "}
+        <a href="https://github.com/pedrocpacheco/myreactfroentend" className="text-muted">
+          ReactApp!{" "}
         </a>
         <a href="https://www.linkedin.com/in/pedro-carvalho-pacheco/" target="blank" className="text-muted">
           Pedro Carvalho Pacheco
